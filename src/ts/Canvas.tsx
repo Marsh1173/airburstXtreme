@@ -6,7 +6,7 @@ export class Canvas extends Component {
     private game?: Game;
 
     render(): JSX.Element {
-        return <canvas ref={this.canvasRef}></canvas>;
+        return <canvas ref={this.canvasRef} width="500" height="500"></canvas>;
     }
 
     componentDidMount(): void {
@@ -22,5 +22,6 @@ export class Canvas extends Component {
             throw new Error('Expected context2d to be defined');
         }
         this.game = new Game(canvasSize, context2d);
+        this.game.start();
     }
 }
