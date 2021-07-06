@@ -1,12 +1,19 @@
 import React, { Component, createRef } from 'react';
 import { Game } from './game/Game';
+import { config } from './util/config';
 
 export class Canvas extends Component {
     private readonly canvasRef = createRef<HTMLCanvasElement>();
     private game?: Game;
 
     render(): JSX.Element {
-        return <canvas ref={this.canvasRef} width="500" height="500"></canvas>;
+        return (
+            <canvas
+                ref={this.canvasRef}
+                width={config.gameSize.width.toString()}
+                height={config.gameSize.height.toString()}
+            ></canvas>
+        );
     }
 
     componentDidMount(): void {
