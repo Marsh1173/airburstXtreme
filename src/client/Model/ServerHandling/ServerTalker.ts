@@ -10,8 +10,11 @@ export class ServerTalker {
 
     public connect() {
         //console.log(window.location.host);
-        this.socket = new WebSocket('ws://server.natehroylance.com');
+
         //this.socket = new WebSocket('ws://localhost:3001');
+        this.socket = new WebSocket('ws://server.natehroylance.com');
+        //this.socket = new WebSocket('ws://165.232.51.18');
+
         this.socket.onopen = () => {
             HomePresenter.showError('Connected!', false);
         };
