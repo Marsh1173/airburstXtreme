@@ -5,7 +5,8 @@
         "lib": ["ES2020", "DOM"],
         "jsx": "react",
         "esModuleInterop": true,
-        "target": "ESNext"
+        "target": "ESNext",
+        "sourceMap": true
     },
-    "include": ["./src/ts/**/*.ts", "./src/ts/**/*.tsx"]
+    "include": ["./src/client/**/*.ts", "./src/client/**/*.tsx"]
 }
