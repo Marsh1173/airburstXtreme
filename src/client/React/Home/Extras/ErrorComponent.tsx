@@ -4,6 +4,7 @@ import './ErrorComponentStyles.less';
 
 interface ErrorComponentState {
     val: string;
+    ifBad: boolean;
     ifHidden: boolean;
 }
 
@@ -13,7 +14,7 @@ export class ErrorComponent extends Component<{}, ErrorComponentState> {
     constructor(props: any) {
         super(props);
 
-        this.state = { val: '', ifHidden: true };
+        this.state = { val: '', ifHidden: true, ifBad: true };
     }
 
     render() {
@@ -22,7 +23,9 @@ export class ErrorComponent extends Component<{}, ErrorComponentState> {
 
         return (
             <div
-                className={`ErrorComponent ${this.state.ifHidden ? 'hidden' : 'notHidden'}`}
+                className={`ErrorComponent ${this.state.ifHidden ? 'hidden' : 'notHidden'}  ${
+                    this.state.ifBad ? '' : 'good'
+                }`}
                 onMouseEnter={() => this.resetCountDown()}
                 onMouseLeave={() => {
                     if (!this.timeout) {

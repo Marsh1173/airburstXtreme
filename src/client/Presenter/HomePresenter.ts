@@ -6,25 +6,23 @@ import { BrowserPresenter } from './BrowserPresenter';
 
 export class HomePresenter {
     public static changeHomeComponentView?: (val: string) => void;
-    private static showErrorFunc?: (val: string) => void;
+    private static showErrorFunc?: (val: string, ifBad: boolean) => void;
     public static onPressBackToHome() {
         if (HomePresenter.changeHomeComponentView) {
             HomePresenter.changeHomeComponentView('home');
         }
     }
 
-    public static setShowErrorFunc(func: ((val: string) => void) | undefined) {
+    public static setShowErrorFunc(func: ((val: string, ifBad: boolean) => void) | undefined) {
         HomePresenter.showErrorFunc = func;
     }
-    public static showError(val: string) {
+    public static showError(val: string, ifBad: boolean = true) {
         if (HomePresenter.showErrorFunc) {
-            HomePresenter.showErrorFunc(val);
+            HomePresenter.showErrorFunc(val, ifBad);
         }
     }
     public static showConnectionError() {
-        if (HomePresenter.showErrorFunc) {
-            HomePresenter.showErrorFunc('Connection error - try refreshing.');
-        }
+        this.showError('Connection error - try refreshing.');
     }
 
     public static async initializeServer() {

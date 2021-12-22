@@ -49,11 +49,13 @@ export class HomeComponent extends Component<{}, HomeComponentState> {
             this.setState({ curScreen: val });
         };
 
-        HomePresenter.setShowErrorFunc((val: string) => {
+        HomePresenter.setShowErrorFunc((val: string, ifBad: boolean) => {
             if (this.errorRef.current) {
-                this.errorRef.current.setState({ val, ifHidden: false });
+                this.errorRef.current.setState({ val, ifBad, ifHidden: false });
             }
         });
+
+        HomePresenter.showError('Connecting to server...');
 
         HomePresenter.initializeServer();
     }

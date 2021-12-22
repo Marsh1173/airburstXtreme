@@ -9,15 +9,19 @@ export class ServerTalker {
     constructor(private messageReceiver: MessageReceiver) {}
 
     public connect() {
-        console.log(window.location.host);
-        this.socket = new WebSocket('ws://' + window.location.host + ':3001');
+        //console.log(window.location.host);
+        this.socket = new WebSocket('ws://165.232.51.18:3001');
+        //this.socket = new WebSocket('ws://localhost:3001');
+        this.socket.onopen = () => {
+            HomePresenter.showError('Connected!', false);
+        };
         this.socket.addEventListener('error', (event) => {
             console.log('WebSocket error: ', event);
             HomePresenter.showConnectionError();
         });
         this.socket.addEventListener('close', (event) => {
             console.log('Connection to websocket closed');
-            HomePresenter.showError('Connection lost.');
+            HomePresenter.showError('Connection lost.', false);
             ServerTalker.serverTalker = undefined;
         });
         this.socket.onmessage = (message: MessageEvent<string>) => {
