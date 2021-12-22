@@ -10,7 +10,7 @@ export class ServerTalker {
 
     public connect() {
         //console.log(window.location.host);
-        this.socket = new WebSocket('ws://165.232.51.18:3001');
+        this.socket = new WebSocket('ws://server.natehroylance.com');
         //this.socket = new WebSocket('ws://localhost:3001');
         this.socket.onopen = () => {
             HomePresenter.showError('Connected!', false);
@@ -21,7 +21,7 @@ export class ServerTalker {
         });
         this.socket.addEventListener('close', (event) => {
             console.log('Connection to websocket closed');
-            HomePresenter.showError('Connection lost.', false);
+            HomePresenter.showError('Connection lost.');
             ServerTalker.serverTalker = undefined;
         });
         this.socket.onmessage = (message: MessageEvent<string>) => {
