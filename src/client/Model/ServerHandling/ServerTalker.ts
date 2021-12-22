@@ -9,7 +9,8 @@ export class ServerTalker {
     constructor(private messageReceiver: MessageReceiver) {}
 
     public connect() {
-        this.socket = new WebSocket('ws://localhost:3001');
+        console.log(window.location.host);
+        this.socket = new WebSocket('ws://' + window.location.host + ':3001');
         this.socket.addEventListener('error', (event) => {
             console.log('WebSocket error: ', event);
             HomePresenter.showConnectionError();
